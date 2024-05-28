@@ -17,6 +17,19 @@ export const searchSymbol = async (query) => {
   return await response.json();
 };
 
+export const graphData = async (symbol) => {
+  const url = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=SYYQBEC7ZUYE4ACZ`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const message = `An error has occured: ${response.status}`;
+    throw new Error(message);
+  }
+
+  return await response.json();
+};
+
+
 /**
  * Fetches the details of a given company
  * @param {string} stockSymbol - Symbol of the company, e.g. 'FB'

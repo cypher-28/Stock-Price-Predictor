@@ -3,6 +3,7 @@ import ThemeContext from "../context/ThemeContext";
 import { searchSymbol } from "../utils/api/stock-api";
 import SearchResults from "./SearchResults";
 import { SearchIcon, XIcon } from "@heroicons/react/solid";
+import {useNavigate} from "react-router-dom"
 
 const Search = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -10,6 +11,7 @@ const Search = () => {
   const [input, setInput] = useState("");
 
   const [bestMatches, setBestMatches] = useState([]);
+  const navigate = useNavigate();
 
   const updateBestMatches = async () => {
     try {
@@ -17,6 +19,7 @@ const Search = () => {
         const searchResults = await searchSymbol(input);
         const result = searchResults.result;
         setBestMatches(result);
+        navigate(`/?query=${input}`);
       }
     } catch (error) {
       setBestMatches([]);

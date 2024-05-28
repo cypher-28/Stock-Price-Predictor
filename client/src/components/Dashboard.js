@@ -6,6 +6,7 @@ import Chart from "./Chart";
 import Header from "./Header";
 import StockContext from "../context/StockContext";
 import { fetchStockDetails, fetchQuote } from "../utils/api/stock-api";
+import LineChart from "./LineChart";
 
 const Dashboard = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -51,7 +52,7 @@ const Dashboard = () => {
         <Header name={stockDetails.name} />
       </div>
       <div className="md:col-span-2 row-span-4">
-        <Chart />
+        <LineChart />
       </div>
       <div>
         <Overview
